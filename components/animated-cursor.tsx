@@ -76,8 +76,8 @@ export function AnimatedCursor() {
 
   if (!mounted) return null;
 
-  const cursorColor = isDarkMode ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.8)";
-  const hoverColor = isDarkMode ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)";
+  const cursorColor = isDarkMode ? "#00FFFF" : "rgba(0, 0, 0, 0.8)";
+  const hoverColor = isDarkMode ? "#00FFFF" : "rgba(0, 0, 0, 0.5)";
 
   return (
     <>
@@ -114,7 +114,7 @@ export function AnimatedCursor() {
           marginTop: linkHovered ? "-20px" : "-15px",
           borderColor: linkHovered ? hoverColor : cursorColor,
           borderWidth: linkHovered ? "1px" : "2px",
-          filter: linkHovered ? 'drop-shadow(0 0 5px rgba(255,255,255,0.3))' : 'none',
+          filter: linkHovered ? 'drop-shadow(0 0 5px #00FFFF)' : 'none',
         }}
       ></div>
 
