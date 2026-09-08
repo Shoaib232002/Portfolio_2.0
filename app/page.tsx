@@ -384,8 +384,8 @@ export default function Home() {
                 title="Edu-Verse"
                 description="Full-stack virtual classroom platform featuring WebRTC video calling, Socket.IO live chat, push notifications, role-based dashboards (Student, Teacher, Admin), and academic workflows."
                 tags={["React", "Node.js", "MongoDB", "WebRTC", "Socket.IO", "Express"]}
-                image="/placeholder.svg"
-                link="https://github.com/Shoaib232002/Edu-Verse.git"
+                image="/projects-images/Eduverse.png"
+                link="https://github.com/Shoaib232002/EduVerse"
               />
 
               <ProjectCard
@@ -408,16 +408,16 @@ export default function Home() {
                 title="Animation Arcade"
                 description="Designed a 10-level cricket-themed CSS animation learning game where users write real CSS code to progress, demonstrating component-based architecture."
                 tags={["React", "Vanilla JS", "CSS3", "Interactive Game"]}
-                image="/placeholder.svg"
-                link="https://github.com/Shoaib232002"
+                image="/projects-images/animation-arcade.png"
+                link="https://github.com/Shoaib232002/Animation-Arcade"
               />
 
               <ProjectCard
                 title="Timezones CLI Tool"
                 description="Published a Linux/macOS CLI tool supporting live, continuously updating world time display across major cities to improve cross-timezone developer productivity."
                 tags={["Node.js", "CLI", "Linux/macOS", "JavaScript"]}
-                image="/placeholder.svg"
-                link="https://github.com/Shoaib232002"
+                image="/projects-images/CLI.png"
+                link="https://github.com/Shoaib232002/timezones-repo"
               />
 
               <ProjectCard
