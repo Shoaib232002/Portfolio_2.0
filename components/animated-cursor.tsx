@@ -1,158 +1,167 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function AnimatedCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [hidden, setHidden] = useState(true);
-  const [clicked, setClicked] = useState(false);
-  const [linkHovered, setLinkHovered] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const dotRef = useRef<HTMLDivElement | null>(null);
+  const ringRef = useRef<HTMLDivElement | null>(null);
+
+  const mousePos = useRef({ x: -100, y: -100 });
+  const ringPos = useRef({ x: -100, y: -100 });
+  const animFrameId = useRef<number | null>(null);
 
   useEffect(() => {
-    // Only render on client after hydration
     setMounted(true);
-    
-    // Check for dark mode preference
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDarkMode(mediaQuery.matches);
-    
-    const handler = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
-    mediaQuery.addEventListener('change', handler);
-    
-    return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
   useEffect(() => {
     if (!mounted) return;
 
-    const updatePosition = (e: MouseEvent) => {
-      // Add slight delay for smoother movement (trailing effect)
-      requestAnimationFrame(() => {
-        setPosition({ x: e.clientX, y: e.clientY });
-        setHidden(false);
-      });
+    const handleMouseMove = (e: MouseEvent) => {
+      mousePos.current = { x: e.clientX, y: e.clientY };
+      if (!isVisible) setIsVisible(true);
     };
 
-    const handleMouseDown = () => setClicked(true);
-    const handleMouseUp = () => setClicked(false);
+    const handleMouseDown = () => setIsClicked(true);
+    const handleMouseUp = () => setIsClicked(false);
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
 
-    const handleMouseEnterLink = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+
+      const isInteractive =
         target.tagName === "A" ||
         target.tagName === "BUTTON" ||
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.tagName === "SELECT" ||
         target.closest("a") ||
         target.closest("button") ||
-        target.hasAttribute('data-cursor-hover')
-      ) {
-        setLinkHovered(true);
+        target.getAttribute("role") === "button" ||
+        target.hasAttribute("data-cursor-hover") ||
+        target.classList.contains("hover-effect");
+
+      setIsHovered(!!isInteractive);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+    document.body.addEventListener("mouseleave", handleMouseLeave);
+    document.body.addEventListener("mouseenter", handleMouseEnter);
+    window.addEventListener("mouseover", handleMouseOver);
+
+    const render = () => {
+      const lerp = (start: number, end: number, factor: number) =>
+        start + (end - start) * factor;
+
+      ringPos.current.x = lerp(ringPos.current.x, mousePos.current.x, 0.18);
+      ringPos.current.y = lerp(ringPos.current.y, mousePos.current.y, 0.18);
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${mousePos.current.x}px, ${mousePos.current.y}px, 0)`;
       }
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0)`;
+      }
+
+      animFrameId.current = requestAnimationFrame(render);
     };
 
-    const handleMouseLeaveLink = () => {
-      setLinkHovered(false);
-    };
-
-    document.addEventListener("mousemove", updatePosition);
-    document.addEventListener("mouseenter", updatePosition);
-    document.addEventListener("mouseleave", () => setHidden(true));
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("mouseover", handleMouseEnterLink);
-    document.addEventListener("mouseout", handleMouseLeaveLink);
+    animFrameId.current = requestAnimationFrame(render);
 
     return () => {
-      document.removeEventListener("mousemove", updatePosition);
-      document.removeEventListener("mouseenter", updatePosition);
-      document.removeEventListener("mouseleave", () => setHidden(true));
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("mouseover", handleMouseEnterLink);
-      document.removeEventListener("mouseout", handleMouseLeaveLink);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+      document.body.removeEventListener("mouseleave", handleMouseLeave);
+      document.body.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener("mouseover", handleMouseOver);
+
+      if (animFrameId.current) {
+        cancelAnimationFrame(animFrameId.current);
+      }
     };
-  }, [mounted]);
+  }, [mounted, isVisible]);
 
   if (!mounted) return null;
 
-  const cursorColor = isDarkMode ? "#00FFFF" : "rgba(0, 0, 0, 0.8)";
-  const hoverColor = isDarkMode ? "#00FFFF" : "rgba(0, 0, 0, 0.5)";
-
   return (
     <>
-      {/* Main cursor dot with pulsing animation */}
       <div
-        className={`cursor-dot pointer-events-none fixed top-0 left-0 z-[9999] transition-transform duration-100 ease-out ${
-          hidden ? "opacity-0" : "opacity-100"
-        } ${clicked ? "scale-50" : "scale-100"}`}
+        ref={dotRef}
+        className={`pointer-events-none fixed top-0 left-0 z-[9999] rounded-full transition-opacity duration-300 will-change-transform ${
+          isVisible ? "opacity-100" : "opacity-0"
+        }`}
         style={{
-          transform: `translate(${position.x}px, ${position.y}px)`,
+          width: isHovered ? "8px" : "6px",
+          height: isHovered ? "8px" : "6px",
+          marginLeft: isHovered ? "-4px" : "-3px",
+          marginTop: isHovered ? "-4px" : "-3px",
         }}
       >
         <div
-          className={`absolute rounded-full transform -translate-x-1/2 -translate-y-1/2 ${
-            linkHovered ? "w-6 h-6 mix-blend-difference bg-white" : "w-3 h-3"
-          } transition-all duration-300 ease-out`}
-          style={{
-            backgroundColor: linkHovered ? hoverColor : cursorColor,
-            boxShadow: linkHovered ? '0 0 10px rgba(255,255,255,0.5)' : 'none',
-          }}
-        ></div>
+          className={`w-full h-full rounded-full transition-all duration-200 ${
+            isClicked
+              ? "scale-50 bg-primary"
+              : isHovered
+              ? "scale-125 bg-primary shadow-[0_0_12px_rgba(139,92,246,0.9)]"
+              : "bg-primary shadow-[0_0_8px_rgba(139,92,246,0.6)] dark:bg-primary"
+          }`}
+        />
       </div>
 
-      {/* Outer ring with trailing effect */}
       <div
-        className={`cursor-ring pointer-events-none fixed top-0 left-0 z-[9998] rounded-full border transition-all duration-500 ease-out ${
-          hidden ? "opacity-0" : "opacity-100"
-        } ${clicked ? "scale-50 border-2" : "scale-100"} ${linkHovered ? "scale-150 !border-1" : ""}`}
+        ref={ringRef}
+        className={`pointer-events-none fixed top-0 left-0 z-[9998] rounded-full border transition-all duration-300 ease-out will-change-transform ${
+          isVisible ? "opacity-100" : "opacity-0"
+        }`}
         style={{
-          transform: `translate(${position.x}px, ${position.y}px)`,
-          width: linkHovered ? "40px" : "30px",
-          height: linkHovered ? "40px" : "30px",
-          marginLeft: linkHovered ? "-20px" : "-15px",
-          marginTop: linkHovered ? "-20px" : "-15px",
-          borderColor: linkHovered ? hoverColor : cursorColor,
-          borderWidth: linkHovered ? "1px" : "2px",
-          filter: linkHovered ? 'drop-shadow(0 0 5px #00FFFF)' : 'none',
+          width: isHovered ? "48px" : "32px",
+          height: isHovered ? "48px" : "32px",
+          marginLeft: isHovered ? "-24px" : "-16px",
+          marginTop: isHovered ? "-24px" : "-16px",
         }}
-      ></div>
-
-      {/* Optional trail effect (small dots following cursor) */}
-      {Array.from({ length: 3 }).map((_, i) => (
+      >
         <div
-          key={i}
-          className={`pointer-events-none fixed top-0 left-0 z-[9997] rounded-full transition-transform duration-700 ease-out ${
-            hidden ? "opacity-0" : "opacity-50"
+          className={`w-full h-full rounded-full border transition-all duration-300 ${
+            isClicked
+              ? "scale-75 border-primary bg-primary/20"
+              : isHovered
+              ? "scale-100 border-primary bg-primary/10 shadow-[0_0_20px_rgba(139,92,246,0.3)] dark:border-primary dark:bg-primary/20"
+              : "scale-100 border-primary/40 dark:border-primary/50"
           }`}
-          style={{
-            transform: `translate(${position.x}px, ${position.y}px)`,
-            width: "4px",
-            height: "4px",
-            marginLeft: "-2px",
-            marginTop: "-2px",
-            backgroundColor: cursorColor,
-            transitionDelay: `${i * 50}ms`,
-          }}
-        ></div>
-      ))}
+        />
+      </div>
 
       <style jsx global>{`
-        body {
-          cursor: none;
-        }
-
-        * {
-          cursor: none !important;
-        }
-
-        @media (pointer: coarse), (max-width: 768px) {
-          body, * {
-            cursor: auto !important;
+        @media (min-width: 769px) and (pointer: fine) {
+          body,
+          a,
+          button,
+          input,
+          textarea,
+          select {
+            cursor: none !important;
           }
-          .cursor-dot,
-          .cursor-ring {
-            display: none !important;
+        }
+
+        @media (max-width: 768px), (pointer: coarse) {
+          body,
+          a,
+          button,
+          input,
+          textarea,
+          select {
+            cursor: auto !important;
           }
         }
       `}</style>

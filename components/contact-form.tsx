@@ -21,10 +21,10 @@ export function ContactForm() {
 
     try {
       await emailjs.sendForm(
-        "service_3502w3h", // Your EmailJS service ID
-        "template_rsgmhqo", // Your EmailJS template ID
+        "service_3502w3h",
+        "template_rsgmhqo",
         formRef.current!,
-        "z8cS4P76dF0PqmPUQ", // Your EmailJS public key
+        "z8cS4P76dF0PqmPUQ",
       );
 
       toast({
@@ -32,7 +32,6 @@ export function ContactForm() {
         description: "Thank you for your message. I'll get back to you soon.",
       });
 
-      // Reset the form
       formRef.current?.reset();
     } catch (error) {
       toast({

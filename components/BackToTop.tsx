@@ -5,7 +5,6 @@ import { ArrowUp } from "lucide-react";
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Toggle visibility on scroll
   useEffect(() => {
     const toggleVisibility = () => {
       setIsVisible(window.scrollY > 300);
@@ -15,7 +14,6 @@ const BackToTop = () => {
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
-  // Scroll to top
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
