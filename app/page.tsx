@@ -8,7 +8,7 @@ import { SkillBadge } from "@/components/skill-badge";
 import { ContactForm } from "@/components/contact-form";
 import { AnimatedText } from "@/components/animated-text";
 import { ParticleBackground } from "@/components/particle-background";
-import { FaGraduationCap, FaCertificate, FaBriefcase, FaLightbulb, FaUserAlt, FaInstagram } from "react-icons/fa";
+import { FaGraduationCap, FaCertificate, FaBriefcase, FaLightbulb, FaUserAlt, FaInstagram, FaTrophy, FaMedal } from "react-icons/fa";
 import { MdEmail, MdPhone, MdLocationOn, MdLocationCity } from "react-icons/md";
 
 export default function Home() {
@@ -27,7 +27,7 @@ export default function Home() {
                   <p className="max-w-[600px] text-muted-foreground md:text-xl font-medium">
                     I'm{" "}
                     <AnimatedText
-                      texts={["Pursuing MCA", "a Web Developer", "an Android Developer"]}
+                      texts={["a Full Stack Developer", "an MCA Graduate", "a Web & Mobile Developer"]}
                       className="text-primary font-semibold"
                     />
                   </p>
@@ -134,7 +134,7 @@ export default function Home() {
                 My Journey 🚀
               </h2>
               <p className="max-w-4xl text-base md:text-lg text-gray-300 mt-4 mx-auto leading-relaxed">
-                I'm currently pursuing my MCA. Enthusiastic Full Stack Developer with internship experience in web development and a strong foundation in AI/ML. Skilled in building responsive web and mobile applications with hands-on experience in modern technologies. Quick learner, team player, and passionate about solving real-world problems through code.
+                Full Stack Developer currently working at Quintype Technologies, contributing to production web products and optimizing Core Web Vitals across publisher websites. Experienced in building end-to-end applications using React.js, Node.js, Express.js, and MongoDB, with exposure to WebRTC, Socket.IO, and AI/ML integration. Proven ability to independently own features from API design to responsive UI delivery.
               </p>
             </div>
 
@@ -144,22 +144,66 @@ export default function Home() {
                   <h3 className="text-2xl font-bold text-yellow-400 flex items-center gap-3">
                     <FaGraduationCap className="text-emerald-400" /> Education
                   </h3>
-                  <ul className="mt-4 text-gray-200 space-y-3 text-sm pl-2">
+                  <ul className="mt-4 text-gray-200 space-y-4 text-sm pl-2">
                     <li>
-                      <strong>Master of Computer Application (Ongoing)</strong><br />
-                      <span className="text-teal-300">AIMS Institutes, Bangalore (2023–2025 Expected)</span>
+                      <div className="flex justify-between items-baseline">
+                        <strong>Master of Computer Application (Completed)</strong>
+                        <span className="text-yellow-300 font-semibold">80% (8.0 / 10.0)</span>
+                      </div>
+                      <span className="text-teal-300">AIMS Institutes, Bangalore (2023–2025)</span>
                     </li>
                     <li>
-                      <strong>Bachelor of Computer Application <span className="text-yellow-300">80%</span></strong><br />
-                      <span className="text-teal-300">PES College Of Science, Arts and Commerce, Mandya (2020–2023)</span>
+                      <div className="flex justify-between items-baseline">
+                        <strong>Bachelor of Computer Application</strong>
+                        <span className="text-yellow-300 font-semibold">83.8% (8.38 / 10.0)</span>
+                      </div>
+                      <span className="text-teal-300">PES College of Arts & Science, Mandya (2021–2023)</span>
                     </li>
                     <li>
-                      <strong>Pre University - <span className="text-yellow-300">74.84%</span></strong><br />
+                      <div className="flex justify-between items-baseline">
+                        <strong>Pre University</strong>
+                        <span className="text-yellow-300 font-semibold">74.84%</span>
+                      </div>
                       <span className="text-teal-300">Santhome PU College, Kyatamgere, Mandya (2020)</span>
                     </li>
                     <li>
-                      <strong>SSLC - <span className="text-yellow-300">79.83%</span></strong><br />
+                      <div className="flex justify-between items-baseline">
+                        <strong>SSLC</strong>
+                        <span className="text-yellow-300 font-semibold">79.83%</span>
+                      </div>
                       <span className="text-teal-300">St Ann's School, Maddur (2018)</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-bold text-yellow-400 flex items-center gap-3">
+                    <FaTrophy className="text-amber-400" /> Microsoft Badges & Extracurriculars
+                  </h3>
+                  <ul className="mt-4 text-gray-200 space-y-3 text-sm pl-2">
+                    <li className="flex items-start gap-2">
+                      <FaMedal className="text-amber-400 mt-1 shrink-0" />
+                      <div>
+                        <strong>28 Skill Badges & 6 Trophies</strong> on Microsoft Learn
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <FaMedal className="text-teal-400 mt-1 shrink-0" />
+                      <div>
+                        Participated in <strong>AI.NXT Summit</strong> at Microsoft Luxor
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <FaMedal className="text-indigo-400 mt-1 shrink-0" />
+                      <div>
+                        Competed in <strong>Intercollegiate IT Quiz</strong> (RVITM, 2025)
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <FaMedal className="text-pink-400 mt-1 shrink-0" />
+                      <div>
+                        Participated in multiple college tech fests
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -211,7 +255,7 @@ export default function Home() {
                       >
                         <strong>Postman API Fundamentals</strong>
                       </a>{" "}
-                      – <span className="text-teal-300">Let's Upgrade (2025)</span>
+                      – <span className="text-teal-300">Let's Upgrade (2024)</span>
                     </li>
                     <li>
                       <a
@@ -231,9 +275,9 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="no-underline hover:text-yellow-500 transition-colors"
                       >
-                        <strong>Full Stack Development</strong>
+                        <strong>Full Stack Web Development</strong>
                       </a>{" "}
-                      – <span className="text-teal-300">Tech Mindsparc (10/2024)</span>
+                      – <span className="text-teal-300">TECH MINDSPARC INNOVATIONS (2024)</span>
                     </li>
                     <li>
                       <a
@@ -243,17 +287,6 @@ export default function Home() {
                         className="no-underline hover:text-yellow-500 transition-colors"
                       >
                         <strong>Android App Development</strong>
-                      </a>{" "}
-                      – <span className="text-teal-300">Internshala (2023)</span>
-                    </li>
-                    <li>
-                      <a
-                        href="https://drive.google.com/file/d/1PKR-lT9xWyAGEJhgbSIsr3AKoSbVFFln/view"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="no-underline hover:text-yellow-500 transition-colors"
-                      >
-                        <strong>Job and Internship Training</strong>
                       </a>{" "}
                       – <span className="text-teal-300">Internshala (2023)</span>
                     </li>
@@ -275,9 +308,21 @@ export default function Home() {
 
                 <div>
                   <h3 className="text-2xl font-bold text-yellow-400 flex items-center gap-3">
-                    <FaBriefcase className="text-indigo-400" /> Experience
+                    <FaBriefcase className="text-indigo-400" /> Work Experience
                   </h3>
-                  <ul className="mt-4 text-gray-200 space-y-3 text-sm pl-2">
+                  <ul className="mt-4 text-gray-200 space-y-4 text-sm pl-2">
+                    <li>
+                      <strong>Software Developer</strong> | <span className="text-amber-300">Quintype Technologies</span>
+                      <br />
+                      <span className="text-yellow-300">Oct 2025 - Ongoing</span><br />
+                      <span className="text-teal-300">Core Web Vitals Optimization, React.js, Custom CLI Tools, Chrome Extensions</span>
+                    </li>
+                    <li>
+                      <strong>MERN Stack Developer (Intern)</strong> | <span className="text-amber-300">Pentagon Space</span>
+                      <br />
+                      <span className="text-yellow-300">July 2025 - Oct 2025</span><br />
+                      <span className="text-teal-300">MERN Stack, API Design, Git Workflows & Clean UI</span>
+                    </li>
                     <li>
                       <a
                         href="https://drive.google.com/file/d/1Ykjcg81mD_rXP8FGrkXvugu-xw68B31F/view"
@@ -285,11 +330,11 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="no-underline hover:text-yellow-500 transition-colors"
                       >
-                        <strong>Intern</strong> | Microsoft Internship by Edunet Foundation
+                        <strong>Foundations of AI (Intern)</strong> | Microsoft Internship by Edunet Foundation
                       </a>
                       <br />
                       <span className="text-yellow-300">April-May 2025</span><br />
-                      <span className="text-teal-300">ML, Computer Vision, NLP, Azure AI</span>
+                      <span className="text-teal-300">Machine Learning, Deep Learning, GenAI, Azure AI</span>
                     </li>
                     <li>
                       <a
@@ -298,21 +343,24 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="no-underline hover:text-yellow-500 transition-colors"
                       >
-                        <strong>Full Stack Web Development (Intern)</strong> | TECH MINDSPARC
+                        <strong>Full Stack Web Development (Intern)</strong> | TECH MINDSPARC INNOVATIONS
                       </a>
                       <br />
                       <span className="text-yellow-300">Jul–Oct 2024</span><br />
-                      <span className="text-teal-300">Frontend and backend development</span>
+                      <span className="text-teal-300">Frontend and Backend Development</span>
                     </li>
                   </ul>
                 </div>
 
                 <div>
                   <h3 className="text-2xl font-bold text-yellow-400 flex items-center gap-3">
-                    <FaLightbulb className="text-pink-400" /> Interests
+                    <FaLightbulb className="text-pink-400" /> Interests & Languages
                   </h3>
                   <p className="text-gray-300 mt-2 text-sm md:text-base">
                     • Badminton 🎾 • Exploring Tech 💡 • Creative Coding 💻
+                  </p>
+                  <p className="text-gray-400 mt-2 text-xs md:text-sm">
+                    <strong>Languages:</strong> English, Hindi, Kannada, Urdu
                   </p>
                 </div>
               </div>
@@ -327,25 +375,49 @@ export default function Home() {
                 <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">Portfolio</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">My Projects</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Check out some of my recent work and projects I've been involved with.
+                  Check out some of my recent work and projects I've built.
                 </p>
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
               <ProjectCard
-                title="Fake-Job-Postings-Detection"
-                description="This system is a Real-Time Fake Job Posting Detector that uses Machine Learning (ML) to classify job postings as real or fake."
-                tags={["Machine Learning", "Flask", "HTML-CSS"]}
-                image="/projects-images/Fake-Jobs.png?height=300&width=400"
-                link="https://github.com/Shoaib232002/Fake-Job-Postings-Detection.git"
+                title="Edu-Verse"
+                description="Full-stack virtual classroom platform featuring WebRTC video calling, Socket.IO live chat, push notifications, role-based dashboards (Student, Teacher, Admin), and academic workflows."
+                tags={["React", "Node.js", "MongoDB", "WebRTC", "Socket.IO", "Express"]}
+                image="/placeholder.svg"
+                link="https://github.com/Shoaib232002/Edu-Verse.git"
               />
 
               <ProjectCard
                 title="Resume Genie"
                 description="Integrated an AI-powered chatbot in a Resume Builder web app to enhance user interaction and provide real-time resume-building assistance."
-                tags={["React", "Node.js", "MongoDb", "Gemini API"]}
+                tags={["ReactJS", "Node.js", "MongoDB", "Express.js", "Gemini API"]}
                 image="/projects-images/Resume-Genie.png?height=300&width=400"
                 link="https://github.com/Shoaib232002/Resume-Genie.git"
+              />
+
+              <ProjectCard
+                title="Fake-Job-Postings-Detection"
+                description="Flask web application to detect fake job postings by integrating a trained Random Forest model with TF-IDF vectorization for real-time fraud predictions."
+                tags={["Python", "Flask", "Machine Learning", "TF-IDF"]}
+                image="/projects-images/Fake-Jobs.png?height=300&width=400"
+                link="https://github.com/Shoaib232002/Fake-Job-Postings-Detection.git"
+              />
+
+              <ProjectCard
+                title="Animation Arcade"
+                description="Designed a 10-level cricket-themed CSS animation learning game where users write real CSS code to progress, demonstrating component-based architecture."
+                tags={["React", "Vanilla JS", "CSS3", "Interactive Game"]}
+                image="/placeholder.svg"
+                link="https://github.com/Shoaib232002"
+              />
+
+              <ProjectCard
+                title="Timezones CLI Tool"
+                description="Published a Linux/macOS CLI tool supporting live, continuously updating world time display across major cities to improve cross-timezone developer productivity."
+                tags={["Node.js", "CLI", "Linux/macOS", "JavaScript"]}
+                image="/placeholder.svg"
+                link="https://github.com/Shoaib232002"
               />
 
               <ProjectCard
@@ -358,8 +430,8 @@ export default function Home() {
 
               <ProjectCard
                 title="Delicious-Recipe"
-                description="Built a full-stack Food Recipe App features user authentication, categorized recipes (Veg, Non-Veg, Snacks), and a responsive UI."
-                tags={["Node.js", "HTML&CSS", "JavaScript", "MySql"]}
+                description="Built a full-stack Food Recipe App featuring user authentication, categorized recipes (Veg, Non-Veg, Snacks), and a responsive UI."
+                tags={["Node.js", "HTML&CSS", "JavaScript", "MySQL"]}
                 image="/projects-images/Delicious-Recipe.png?height=300&width=400"
                 link="https://github.com/Shoaib232002/Delicious-Recipe.git"
               />
@@ -367,15 +439,15 @@ export default function Home() {
               <ProjectCard
                 title="FoodRunner"
                 description="Built a user-side demo Android application focused on food ordering functionality with an intuitive and interactive UI."
-                tags={["Kotlin", "XML", "MySql", "Android Studio"]}
+                tags={["Kotlin", "XML", "MySQL", "Android Studio"]}
                 image="/projects-images/FoodRunner.png?height=300&width=400"
                 link="https://github.com/Shoaib232002/FoodRunner.git"
               />
 
               <ProjectCard
                 title="BookHub"
-                description="A simple Book reading Android application for peronalized book keeping experience which was built during my Internshala Course."
-                tags={["Kotlin", "XML", "MySql", "Android Studio"]}
+                description="A simple Book reading Android application for personalized book keeping experience which was built during my Internshala Course."
+                tags={["Kotlin", "XML", "MySQL", "Android Studio"]}
                 image="/projects-images/BookHub.png?height=300&width=400"
                 link="https://github.com/Shoaib232002/BookHub.git"
               />
@@ -399,37 +471,47 @@ export default function Home() {
                 <CardContent className="p-6">
                   <div className="grid gap-4">
                     <div>
-                      <h3 className="text-xl font-bold">Frontend Development</h3>
+                      <h3 className="text-xl font-bold">Languages & Core</h3>
                       <div className="mt-4 flex flex-wrap gap-2">
+                        <SkillBadge name="JavaScript" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Python" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="C" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Kotlin" icon={<Code className="h-3 w-3" />} />
                         <SkillBadge name="HTML5" icon={<Code className="h-3 w-3" />} />
                         <SkillBadge name="CSS3" icon={<Code className="h-3 w-3" />} />
-                        <SkillBadge name="JavaScript" icon={<Code className="h-3 w-3" />} />
-                        <SkillBadge name="Bootstrap" icon={<Code className="h-3 w-3" />} />
-                        <SkillBadge name="React JS" icon={<Code className="h-3 w-3" />} />
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">Backend Development</h3>
+                      <h3 className="text-xl font-bold">Frontend & Frameworks</h3>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        <SkillBadge name="React.js" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Tailwind CSS" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Bootstrap" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="WebRTC" icon={<Code className="h-3 w-3" />} />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">Backend & Databases</h3>
                       <div className="mt-4 flex flex-wrap gap-2">
                         <SkillBadge name="Node.js" icon={<Code className="h-3 w-3" />} />
-                        <SkillBadge name="Express" icon={<Code className="h-3 w-3" />} />
-                        <SkillBadge name="Python" icon={<Code className="h-3 w-3" />} />
-                        <SkillBadge name="REST APIs" icon={<Code className="h-3 w-3" />} />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">Database</h3>
-                      <div className="mt-4 flex flex-wrap gap-2">
+                        <SkillBadge name="Express.js" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="REST API Development" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Socket.IO" icon={<Code className="h-3 w-3" />} />
                         <SkillBadge name="MongoDB" icon={<Code className="h-3 w-3" />} />
-                        <SkillBadge name="Mysql" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="SQL / MySQL" icon={<Code className="h-3 w-3" />} />
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">Tools & Others</h3>
+                      <h3 className="text-xl font-bold">Tools & Platforms</h3>
                       <div className="mt-4 flex flex-wrap gap-2">
                         <SkillBadge name="Git" icon={<Code className="h-3 w-3" />} />
                         <SkillBadge name="GitHub" icon={<Code className="h-3 w-3" />} />
-                        <SkillBadge name="Canva" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Postman" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Figma" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Vercel" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Power BI" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Excel" icon={<Code className="h-3 w-3" />} />
+                        <SkillBadge name="Generative AI APIs" icon={<Code className="h-3 w-3" />} />
                       </div>
                     </div>
                   </div>
@@ -492,7 +574,7 @@ export default function Home() {
           <div>
             <h3 className="text-xl font-semibold mb-4 text-white">About</h3>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              I thrive on experimenting with the latest frameworks, libraries, and tech stacks.
+              Full Stack Developer working on production web products, WebRTC, Core Web Vitals optimization, and AI/ML integrations.
             </p>
             <p className="text-sm font-medium underline underline-offset-4 text-gray-300 mb-2">
               Social Links
